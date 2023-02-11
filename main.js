@@ -52,27 +52,25 @@
 
 // router.resolve()
 
-import './style.css'
+// import './style.css'
 // import javascriptLogo from './javascript.svg'
 // import { setupCounter } from './counter.js'
 import HomePage from './pages/home'
 import ContactPage from './pages/contact';
 import test from './pages/test';
-
+import "bootstrap/dist/css/bootstrap.min.css"
 document.querySelector('#app').innerHTML = HomePage();
 
-import { router } from './libs';
+import { router, render } from './libs';
 
 import ProjectPage from './pages/project';
 import './pages/trangchu.css';
 import main_trang from './pages/trangchu';
 import notfoundPage from './pages/not-found';
 import projectDetail from './pages/project-detail';
-const render = (container, content) => {
-  container.innerHTML = content();
-}
-
-
+import projects from './pages/admin/projects';
+import projects_add from './pages/admin/projects_add';
+import projects_edit from './pages/admin/projects_edit';
 
 // tạo các đường dẫn đến các page
 router.on('/', () => {
@@ -93,6 +91,15 @@ router.on('/trangchu', () => {
 router.on("/project/:id", (params) => {
   render(app,function(){
   return projectDetail(params)
+  
+  } )
+})
+router.on("/admin/project", () => render(app, projects))
+router.on('/admin/project_add', () => render(app,projects_add))
+// router.on('/admin/project_edit', () => render(app, projects_edit))
+router.on("admin/project_edit/:id", (params) => {
+  render(app,function(){
+  return projects_edit(params)
   
   } )
 })

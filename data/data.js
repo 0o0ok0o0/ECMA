@@ -29,7 +29,11 @@ const menuList = [
 {
     name:'project',
     path: '/project'
-}
+},
+{
+    name:'Admin_project',
+    path: '/admin/project'
+},
 ]
 export {projectList};
 export{menuList}

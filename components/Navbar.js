@@ -4,7 +4,7 @@ const Navbar = () => {
     return `
     ${menuList.map((menu)=>{
         console.log(menu);
-    return `<a href = "${menu.path}" >${menu.name}<a> `
+    return `<a class="px-2" href = "${menu.path}" >${menu.name}<a> | `
     }).join("")}
     `
 }
