@@ -2,10 +2,17 @@ import { router, useEffect, useState } from "../../libs"
 import projects from "./projects";
 
 const projects_edit = ({data:{id}}) => {
-    const projectList = JSON.parse(localStorage.getItem('projects'))||[]
+    // const projectList = JSON.parse(localStorage.getItem('projects'))||[]
     // const currprojectList = projectList.find((project) => project.id === id)
+    const [data, setdata] = useState({})
+        // const projectList = JSON.parse(localStorage.getItem('projects')) || [];
+        useEffect(() => {
+        fetch('http://localhost:3000/projects'+id)
+        .then((res) => res.json())
+        .then((data) =>setdata(data))
+      }, [])
 
-console.log({projectList:{id}});
+// console.log({projectList:{id}});
     useEffect(()=>{
     const form = document.querySelector('.form');
     const name = document.querySelector('.name');
@@ -14,15 +21,24 @@ console.log({projectList:{id}});
         e.preventDefault();
      
     const newProject ={
-   id: id,
+//    id: id,
     name: name.value
     }
     // const newProjectsList = newProject.map((project)=> project.id == id)
-    const newProjectList = projectList.map((project)=>{
-        return project.id == newProject.id? newProject:project
-    })
-    localStorage.setItem('projects', JSON.stringify(newProjectList))
-    router.navigate('admin/project')
+    // const newProjectList = projectList.map((project)=>{
+    //     return project.id == newProject.id? newProject:project
+    // })
+
+    // localStorage.setItem('projects', JSON.stringify(newProjectList))
+    // router.navigate('admin/project')
+    fetch(`http://localhost:3000/projects/${id}`,{
+            method:"PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newProject),
+            
+          }).then(()=>router.navigate('/admin/projects')) 
     })
      })
 

@@ -3,8 +3,11 @@ import { useState, useEffect } from "../../libs"
 const projects = () => {
   const [data, setdata] = useState([])
   useEffect(() => {
-    const projects = JSON.parse(localStorage.getItem('projects'))
-    setdata(projects)
+    // const projects = JSON.parse(localStorage.getItem('projects'))
+    // setdata(projects)
+    fetch('http://localhost:3000/projects')
+    .then((res) => res.json())
+    .then((data) =>setdata(data))
   }, [])
  
   useEffect(() => {
@@ -20,9 +23,14 @@ const projects = () => {
      
         const newProject = data.filter((projects) => projects.id != id)
         // localStorage.setItem('projects', JSON.stringify(newProject))
-        setdata(newProject)
-
+        setdata(newProject);
+console.log(id);
+         fetch(`http://localhost:3000/projects/${id}`,{
+                  method:"DELETE"
+                })
+                .then(()=> alert("Project deleted"))
       })
+      
     }
     
 
@@ -39,12 +47,12 @@ const projects = () => {
     </tr>
   </thead>
   <tbody>
-${data.map((project, index) => `<tr>
+${data.map((projects, index) => `<tr>
 <th >${index + 1}</th>
-<td>${project.name}</td>
+<td>${projects.name}</td>
 
-<td> <button data-name="${project.name}" data-id="${project.id}" class="bg-danger btn-remove border-0 p-2"> Remove</button>
-<a href="/admin/project_edit/${project.id}"> <button data-name="${project.name}"  class="bg-success btn-update border-0 p-2"> Update</button></a>
+<td> <button data-name="${projects.name}" data-id="${projects.id}" class="bg-danger btn-remove border-0 p-2"> Remove</button>
+<a href="/admin/project_edit/${projects.id}"> <button data-name="${projects.name}"  class="bg-success btn-update border-0 p-2"> Update</button></a>
 </td>
 </tr>`).join(' ')}
 

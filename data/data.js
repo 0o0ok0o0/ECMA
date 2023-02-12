@@ -32,7 +32,7 @@ const menuList = [
 },
 {
     name:'Admin_project',
-    path: '/admin/project'
+    path: '/admin/projects'
 },
 ]
 export {projectList};

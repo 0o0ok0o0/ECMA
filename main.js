@@ -65,7 +65,7 @@ import { router, render } from './libs';
 
 import ProjectPage from './pages/project';
 import './pages/trangchu.css';
-import main_trang from './pages/trangchu';
+// import main_trang from './pages/trangchu';
 import notfoundPage from './pages/not-found';
 import projectDetail from './pages/project-detail';
 import projects from './pages/admin/projects';
@@ -85,16 +85,16 @@ router.on('/test', () => {
 router.on('/project', () => {
   render(app, ProjectPage);
 })
-router.on('/trangchu', () => {
-  render(app, main_trang);
-})
+// router.on('/trangchu', () => {
+//   render(app, main_trang);
+// })
 router.on("/project/:id", (params) => {
   render(app,function(){
   return projectDetail(params)
   
   } )
 })
-router.on("/admin/project", () => render(app, projects))
+router.on("/admin/projects", () => render(app, projects))
 router.on('/admin/project_add', () => render(app,projects_add))
 // router.on('/admin/project_edit', () => render(app, projects_edit))
 router.on("admin/project_edit/:id", (params) => {
