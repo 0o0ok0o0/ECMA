@@ -4,10 +4,10 @@ import projects from "./projects";
 const projects_edit = ({data:{id}}) => {
     // const projectList = JSON.parse(localStorage.getItem('projects'))||[]
     // const currprojectList = projectList.find((project) => project.id === id)
-    const [data, setdata] = useState({})
+    const [data, setdata] = useState([])
         // const projectList = JSON.parse(localStorage.getItem('projects')) || [];
         useEffect(() => {
-        fetch('http://localhost:3000/projects'+id)
+        fetch(`http://localhost:3000/projects/${id}`)
         .then((res) => res.json())
         .then((data) =>setdata(data))
       }, [])
@@ -21,7 +21,7 @@ const projects_edit = ({data:{id}}) => {
         e.preventDefault();
      
     const newProject ={
-//    id: id,
+   id: id,
     name: name.value
     }
     // const newProjectsList = newProject.map((project)=> project.id == id)
@@ -41,7 +41,7 @@ const projects_edit = ({data:{id}}) => {
           }).then(()=>router.navigate('/admin/projects')) 
     })
      })
-
+    
     return `
   <table class="table table-bordered">
  
@@ -53,6 +53,7 @@ const projects_edit = ({data:{id}}) => {
   <tr>
   <td> ${id}</td>
   <td>
+  ${data.name}
   </td>
   </tr>
  
@@ -61,11 +62,12 @@ const projects_edit = ({data:{id}}) => {
   <div class="project-add">
   <form class="form">
  
-  <input class="form-control form-control-sm name" type="text" placeholder="Name">
-  <button class="bg-danger border-0 p-2 btn-add ">ADD</button>
+  <input class="form-control form-control-sm name" type="text" value="${data.name}" placeholder="Name">
+  <button class="bg-danger border-0 p-2 btn-add ">Update</button>
   </form>
   </div>
   `
+ 
 }
 
 export default projects_edit
