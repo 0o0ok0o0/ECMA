@@ -1,3 +1,4 @@
+import { getProject, addProject } from "../../Api/config";
 import { router, useEffect, useState } from "../../libs"
 
 const projects_add = () => {
@@ -22,15 +23,15 @@ const projects_add = () => {
          
             // projectList.push(newProject);
             // localStorage.setItem('projects', JSON.stringify(projectList));
-            fetch("http://localhost:3000/projects",{
-            method:"POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newProject),
+        //     fetch("http://localhost:3000/projects",{
+        //     method:"POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify(newProject),
             
-          }).then(()=>router.navigate('/admin/projects')) 
-           
+        //   }).then(()=>router.navigate('/admin/projects')) 
+          addProject(newProject).then(()=>router.navigate('/admin/projects'))
         })
         
     })

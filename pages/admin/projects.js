@@ -1,17 +1,21 @@
-
+import { deleteProject, getProjects } from "../../Api/config"
 import { useState, useEffect } from "../../libs"
 const projects = () => {
   const [data, setdata] = useState([])
   useEffect(() => {
     // const projects = JSON.parse(localStorage.getItem('projects'))
     // setdata(projects)
-    fetch('http://localhost:3000/projects')
-    .then((res) => res.json())
-    .then((data) =>setdata(data))
-  }, [])
+  //   fetch('http://localhost:3000/projects')
+  //   .then((res) => res.json())
+  //   .then((data) =>setdata(data))
+  // }, [])
+  getProjects().then(({data}) =>setdata(data))
+  console.log(getProjects);
+}, [])
  
   useEffect(() => {
     const btns = document.querySelectorAll('.btn-remove')
+    const btns_update = document.querySelectorAll('.btn-update')
     // const btns_update = document.querySelectorAll('.btn-update')
     console.log(btns);
     for (let btn of btns) {
@@ -25,13 +29,27 @@ const projects = () => {
         // localStorage.setItem('projects', JSON.stringify(newProject))
         setdata(newProject);
 console.log(id);
-         fetch(`http://localhost:3000/projects/${id}`,{
-                  method:"DELETE"
-                })
-                .then(()=> alert("Project deleted"))
+        //  fetch(`http://localhost:3000/projects/${id}`,{
+        //           method:"DELETE"
+        //         })
+        //         .then(()=> alert("Project deleted"))
+        deleteProject(id);
       })
       
     }
+    console.log();
+    setInterval(()=>{
+      document.querySelector("#th_id").classList.toggle('redss')
+      for ( const btn_remove of btns ) {
+        btn_remove.classList.toggle('fff')
+      
+      }
+      for ( const btn_update of btns_update ) {
+        btn_update.classList.toggle('fff')
+      
+      }
+      
+    },700)
     
 
   })
@@ -40,7 +58,7 @@ console.log(id);
   <table class="table table-bordered text-center my-5" >
   <thead>
     <tr>
-      <th >ID</th>
+      <th id="th_id">ID</th>
       <th >Name</th>
      
       <th >Action <a href="/admin/project_add">Thêm </a></th>

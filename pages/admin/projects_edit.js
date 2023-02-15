@@ -1,3 +1,4 @@
+import { getProject, updateProject } from "../../Api/config";
 import { router, useEffect, useState } from "../../libs"
 import projects from "./projects";
 
@@ -7,9 +8,11 @@ const projects_edit = ({data:{id}}) => {
     const [data, setdata] = useState([])
         // const projectList = JSON.parse(localStorage.getItem('projects')) || [];
         useEffect(() => {
-        fetch(`http://localhost:3000/projects/${id}`)
-        .then((res) => res.json())
-        .then((data) =>setdata(data))
+        // fetch(`http://localhost:3000/projects/${id}`)
+        // .then((res) => res.json())
+        // .then((data) =>setdata(data))
+        getProject(id).then(({data}) =>setdata(data))
+      console.log(getProject());
       }, [])
 
 // console.log({projectList:{id}});
@@ -31,14 +34,16 @@ const projects_edit = ({data:{id}}) => {
 
     // localStorage.setItem('projects', JSON.stringify(newProjectList))
     // router.navigate('admin/project')
-    fetch(`http://localhost:3000/projects/${id}`,{
-            method:"PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newProject),
+    // fetch(`http://localhost:3000/projects/${id}`,{
+    //         method:"PUT",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(newProject),
             
-          }).then(()=>router.navigate('/admin/projects')) 
+    //       }).then(()=>router.navigate('/admin/projects')) 
+    updateProject(newProject).then(()=>router.navigate('/admin/projects')) 
+    
     })
      })
     
