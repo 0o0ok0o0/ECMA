@@ -22,10 +22,7 @@ const menuList = [
     name:'test' ,
     path: '/test'
 },
-{
-    name:'trang Chủ',
-    path: '/trangchu'
-},
+
 {
     name:'project',
     path: '/project'

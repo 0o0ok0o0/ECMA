@@ -55,6 +55,7 @@
 // import './style.css'
 // import javascriptLogo from './javascript.svg'
 // import { setupCounter } from './counter.js'
+
 import HomePage from './pages/home'
 import ContactPage from './pages/contact';
 import test from './pages/test';
@@ -64,7 +65,7 @@ document.querySelector('#app').innerHTML = HomePage();
 import { router, render } from './libs';
 
 import ProjectPage from './pages/project';
-import './pages/trangchu.css';
+// import './pages/trangchu.css';
 // import main_trang from './pages/trangchu';
 import notfoundPage from './pages/not-found';
 import projectDetail from './pages/project-detail';

@@ -31,8 +31,19 @@ const projects_add = () => {
         //     body: JSON.stringify(newProject),
             
         //   }).then(()=>router.navigate('/admin/projects')) 
-          addProject(newProject).then(()=>router.navigate('/admin/projects'))
+        if(name.value==""){
+
+            alert('Name không được bỏ trống')
+            name.focus();
+            }
+            else{
+                addProject(newProject).then(()=>router.navigate('/admin/projects'))
+            }
+        
+          
         })
+
+      
         
     })
     return `
@@ -40,7 +51,8 @@ const projects_add = () => {
   <form class="form">
  
   <input class="form-control form-control-sm name" type="text" placeholder="Name">
-  <button class="bg-danger border-0 p-2 btn-add">ADD</button>
+  <button class="bg-danger border-0 p-2 text-ligh">ADD</button>
+   <a href="/admin/projects" class=" text-decoration-none bg-primary border-0 p-2 px-4 text-light ">Back</a> 
   </form>
   </div>
   `

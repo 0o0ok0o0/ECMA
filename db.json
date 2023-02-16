@@ -1,12 +1,8 @@
 {
   "projects": [
     {
-      "name": "Long",
-      "id": 1
-    },
-    {
-      "name": "Hiếu",
-      "id": 2
+      "id": 1,
+      "name": ""
     }
   ]
 }

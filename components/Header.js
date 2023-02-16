@@ -2,7 +2,7 @@ import { menuList } from "../data/data";
 import Navbar from "./Navbar";
 const Header = () => {
     return `
-        <header>
+        <header class="text-center mt-4">
             <nav>
                ${Navbar()}
             </nav>
