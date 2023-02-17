@@ -51,8 +51,8 @@ const projects_add = () => {
   <form class="form">
  
   <input class="form-control form-control-sm name" type="text" placeholder="Name">
-  <button class="bg-danger border-0 p-2 text-ligh">ADD</button>
-   <a href="/admin/projects" class=" text-decoration-none bg-primary border-0 p-2 px-4 text-light ">Back</a> 
+  <button class="bg-danger border-0 p-2 text-ligh bg-red-600 text-cyan-50">ADD</button>
+   <a href="/admin/projects" class=" text-decoration-none bg-primary border-0 p-2 px-4 text-cyan-50  bg-blue-700">Back</a> 
   </form>
   </div>
   `

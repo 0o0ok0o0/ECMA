@@ -26,10 +26,12 @@ const projects = () => {
       console.log(name);
       btn.addEventListener('click', () => {
        
-     
-        const newProject = data.filter((projects) => projects.id != id)
-        // localStorage.setItem('projects', JSON.stringify(newProject))
-        setdata(newProject);
+        const comfrim = "Bạn có chắc là muốn xóa";
+        if (confirm(comfrim)) {
+          const newProject = data.filter((projects) => projects.id!= id)
+          // localStorage.setItem('projects', JSON.stringify(newProject))
+          setdata(newProject);
+        }
 
         //  fetch(`http://localhost:3000/projects/${id}`,{
         //           method:"DELETE"

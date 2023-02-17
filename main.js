@@ -59,7 +59,8 @@
 import HomePage from './pages/home'
 import ContactPage from './pages/contact';
 import test from './pages/test';
-import "bootstrap/dist/css/bootstrap.min.css"
+// import "bootstrap/dist/css/bootstrap.min.css"
+// import './tailwind.css'
 document.querySelector('#app').innerHTML = HomePage();
 
 import { router, render } from './libs';
