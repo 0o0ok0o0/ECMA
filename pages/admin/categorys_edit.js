@@ -1,18 +1,19 @@
-import { getProject, updateProject } from "../../Api/config";
-import { router, useEffect, useState } from "../../libs"
-import projects from "./projects";
+import { getCategory, updateCategory } from "../../Api/Categorys";
 
-const projects_edit = ({data:{id}}) => {
-    // const projectList = JSON.parse(localStorage.getItem('projects'))||[]
+import { router, useEffect, useState } from "../../libs"
+import categorys from "./categorys";
+
+const categorys_edit = ({data:{id}}) => {
+    // const projectList = JSON.parse(localStorage.getItem('categorys'))||[]
     // const currprojectList = projectList.find((project) => project.id === id)
     const [data, setdata] = useState([])
-        // const projectList = JSON.parse(localStorage.getItem('projects')) || [];
+        // const projectList = JSON.parse(localStorage.getItem('categorys')) || [];
         useEffect(() => {
-        // fetch(`http://localhost:3000/projects/${id}`)
+        // fetch(`http://localhost:3000/categorys/${id}`)
         // .then((res) => res.json())
         // .then((data) =>setdata(data))
-        getProject(id).then(({data}) =>setdata(data))
-      console.log(getProject());
+        getCategory(id).then(({data}) =>setdata(data))
+      // console.log(getProject());
       }, [])
 
 // console.log({projectList:{id}});
@@ -23,26 +24,26 @@ const projects_edit = ({data:{id}}) => {
     form.addEventListener('submit', (e)=>{
         e.preventDefault();
      
-    const newProject ={
+    const newCategory ={
    id: id,
     name: name.value
     }
-    // const newProjectsList = newProject.map((project)=> project.id == id)
+    // const newcategorysList = newProject.map((project)=> project.id == id)
     // const newProjectList = projectList.map((project)=>{
     //     return project.id == newProject.id? newProject:project
     // })
 
-    // localStorage.setItem('projects', JSON.stringify(newProjectList))
+    // localStorage.setItem('categorys', JSON.stringify(newProjectList))
     // router.navigate('admin/project')
-    // fetch(`http://localhost:3000/projects/${id}`,{
+    // fetch(`http://localhost:3000/categorys/${id}`,{
     //         method:"PUT",
     //         headers: {
     //             "Content-Type": "application/json",
     //         },
     //         body: JSON.stringify(newProject),
             
-    //       }).then(()=>router.navigate('/admin/projects')) 
-    updateProject(newProject).then(()=>router.navigate('/admin/projects')) 
+    //       }).then(()=>router.navigate('/admin/categorys')) 
+    updateCategory(newCategory).then(()=>router.navigate('/admin/categorys')) 
     
     })
      })
@@ -75,4 +76,4 @@ const projects_edit = ({data:{id}}) => {
  
 }
 
-export default projects_edit
+export default categorys_edit

@@ -3,8 +3,8 @@ import { menuList } from "../data/data";
 const Navbar = () => {
     return `
     ${menuList.map((menu)=>{
-        console.log(menu);
-    return `<a class="px-2 p-2 text-decoration-none bg-rose-600 text-light"   href = "${menu.path}" >${menu.name}<a>  `
+        
+    return ` <div class="  mb-1 text-xl font-bold duration-300 hover:scale-105 hover:border-b-4  "><a class="rounded-lg my-auto p-2 px-3 mx-1 text-decoration-none bg-rose-600 text-light"   href = "${menu.path}" >${menu.name}<a> </div> `
     }).join("")}
     `
 }

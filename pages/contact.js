@@ -1,8 +1,11 @@
-import Header from "../components/Header";
+import container from "../components/container";
 const ContactPage = ()=>{
     return `
-    ${Header()}
+    ${container()}
+    <div class="content"> 
     <h1>Contact Page</h1>
+    </div>
+    
     `;
 }
 

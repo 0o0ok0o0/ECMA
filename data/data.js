@@ -19,8 +19,8 @@ const menuList = [
     path: '/contact'
 },
 {
-    name:'test' ,
-    path: '/test'
+    name:'About' ,
+    path: '/about'
 },
 
 {
@@ -29,7 +29,7 @@ const menuList = [
 },
 {
     name:'Admin_project',
-    path: '/admin/projects'
+    path: '/admin/categorys'
 },
 ]
 export {projectList};

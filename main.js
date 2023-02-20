@@ -1,109 +1,56 @@
-// // import './style.css'
-// // import javascriptLogo from './javascript.svg'
-// // import { setupCounter } from './counter.js'
-
-// // document.querySelector('#app').innerHTML = `
-// //   <div>
-// //     <a href="https://vitejs.dev" target="_blank">
-// //       <img src="/vite.svg" class="logo" alt="Vite logo" />
-// //     </a>
-// //     <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-// //       <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-// //     </a>
-// //     <h1>Hello Vite!</h1>
-// //     <div class="card">
-// //       <button id="counter" type="button"></button>
-// //     </div>
-// //     <p class="read-the-docs">
-// //       Click on the Vite logo to learn more
-// //     </p>
-// //   </div>
-// // `
-
-// // setupCounter(document.querySelector('#counter'))
-// import HomePage from "./pages/home";
-// import Contact from "./pages/contact";
-// import main from "./pages/trangchu";
-// import Navigo from "navigo";
-
-// const app = document.querySelector('#app');
-// const render = (container, content)=>{
-// container.innerHTML = content();
-// }
-// const router = new Navigo();
-// // app.innerHTML = HomePage();
-
-// router.on('/',()=>{
-// render(app, HomePage);
-// })
-// router.on('/contact',()=>{
-// render(app, Contact);
-// })
-// document.querySelector('button').onclick = ()=>{
-
-//         render(app,main)
-
-// }
-// document.querySelector('#returns').onclick = ()=>{
-
-//         render(app,HomePage)
-
-// }
-
-// router.resolve()
-
-// import './style.css'
-// import javascriptLogo from './javascript.svg'
-// import { setupCounter } from './counter.js'
-
+// thư viện
+import "bootstrap/dist/css/bootstrap.min.css"
+import { router, render } from './libs';
+// Menu user
 import HomePage from './pages/home'
 import ContactPage from './pages/contact';
-import test from './pages/test';
-// import "bootstrap/dist/css/bootstrap.min.css"
-// import './tailwind.css'
-document.querySelector('#app').innerHTML = HomePage();
-
-import { router, render } from './libs';
-
+import About from './pages/about';
 import ProjectPage from './pages/project';
-// import './pages/trangchu.css';
-// import main_trang from './pages/trangchu';
+
+
+//Menu Admin
+import categorys from './pages/admin/categorys';
+import categorys_add from './pages/admin/categorys_add';
+import categorys_edit from './pages/admin/categorys_edit';
+
+
+
+
+
+
 import notfoundPage from './pages/not-found';
 import projectDetail from './pages/project-detail';
-import projects from './pages/admin/projects';
-import projects_add from './pages/admin/projects_add';
-import projects_edit from './pages/admin/projects_edit';
 
+document.querySelector('#app').innerHTML = HomePage();
 // tạo các đường dẫn đến các page
+
 router.on('/', () => {
   render(app, HomePage);
 })
 router.on('/contact', () => {
   render(app, ContactPage);
 })
-router.on('/test', () => {
-  render(app, test);
+router.on('/about', () => {
+  render(app, About);
 })
 router.on('/project', () => {
   render(app, ProjectPage);
 })
-// router.on('/trangchu', () => {
-//   render(app, main_trang);
-// })
+
 router.on("/project/:id", (params) => {
-  render(app,function(){
-  return projectDetail(params)
-  
-  } )
+  render(app, function () {
+    return projectDetail(params)
+
+  })
 })
-router.on("/admin/projects", () => render(app, projects))
-router.on('/admin/project_add', () => render(app,projects_add))
-// router.on('/admin/project_edit', () => render(app, projects_edit))
-router.on("admin/project_edit/:id", (params) => {
-  render(app,function(){
-  return projects_edit(params)
-  
-  } )
+// Admin
+router.on("/admin/categorys", () => render(app, categorys))
+router.on('/admin/category_add', () => render(app, categorys_add))
+router.on("admin/categorys_edit/:id", (params) => {
+  render(app, function () {
+    return categorys_edit(params)
+
+  })
 })
 router.notFound(() => {
   render(app, notfoundPage);
