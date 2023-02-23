@@ -1,9 +1,28 @@
+
+import { getProjects } from "../Api/projects";
 import container from "../components/container";
-import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { useEffect, useState } from "../libs";
+
 
 const HomePage = () => {
+
+  const [projects, setproject] = useState([]);
+  
+
+useEffect(()=>{
+getProjects().then(({data})=> { 
+  const limitedProjects = data.slice(0, 3)
+  setproject(limitedProjects)
+
+})
+
+},[])
+
+   
   return /*html*/`
       ${container()}
+      <h1 class="text-center">About </h1>
  <div class="w-10/12 m-auto">
       <div class="pt-3 pb-20"> 
       <div class="p-1 bg-gradient-to-r from-[#00cc99] via-[#00cc99] to-[#6600ff] " style="opacity: 1; transform: none;">
@@ -22,7 +41,7 @@ const HomePage = () => {
         <div class="flex-1 ">
         <div class="pb-4 border-b border-gray-500">
         <h2 class="text-3xl font-bold my-3">Một chút về tôi</h2>
-        <p>Hiện tại, mình đang là sinh viên kì 4 tại trường FPT Polytechnic. Mình bắt đầu học lập trình từ tháng 10 năm ngoái và phần lớn thời gian trong ngày mình đều ngồi học code. Ngoài việc học tập trên trường thì mình thường xuyên học thêm trên F8 Fullstack và trên các kênh Youtube như evondev, easy frontend, ...</p>
+        <p>Hiện tại, mình đang là sinh viên kì 5 tại trường FPT Polytechnic. Mình bắt đầu học lập trình từ tháng 10 năm ngoái và phần lớn thời gian trong ngày mình đều ngồi học code. Ngoài việc học tập trên trường thì mình thường xuyên học thêm trên F8 Fullstack và trên các kênh Youtube như evondev, easy frontend, ...</p>
 
         <p class="pt-2">Mình thực sự thích code và thử thách bản thân học được nhiều cái mới vào mỗi ngày mới. Mục tiêu hiện tại của mình là trở thành một lập trình viên Frontend.</p>
         </div>
@@ -34,16 +53,16 @@ const HomePage = () => {
         <li><span class="w-[110px] inline-block">Học vấn<!-- -->:</span>
         <span>FPT Polytechnic</span></li>
         <li><span class="w-[110px] inline-block">Điện thoại<!-- -->:</span>
-        <span>0987336561</span></li>
+        <span>0367767248</span></li>
         <li><span class="w-[110px] inline-block">Email<!-- -->:</span>
-        <span>phuchuy292003@gmail.com</span>
+        <span>longka14pro@gmail.com</span>
         </li>
         <li><span class="w-[110px] inline-block">Địa chỉ<!-- -->:
         </span>
-        <span>Thanh Trì - Hà Nội</span>
+        <span>Chương Mỹ - Hà Nội</span>
         </li>
         <li><span class="w-[110px] inline-block">Website<!-- -->:</span>
-        <span>https://phuy.vercel.app</span>
+        <span> <a class="text-decoration-none" href="https://github.com/LongThanh2409/Du_An_1.git"> Github.com/LongThanh2409 </a></span>
         </li><li><span class="w-[110px] inline-block">Nghề nghiệp<!-- -->:</span>
         <span>Web developer</span>
         </li></ul>
@@ -52,9 +71,34 @@ const HomePage = () => {
         </div>
         </div>
         </div>
+       
         </div>
+        <h1 class="text-center"> Projects </h1>
+    <div class="flex flex-wrap justify-center py-12">
         
-    `;
+        ${projects.map((project)=>{
+      return/*html*/ `
+   
+        <div class="w-full md:w-1/2 lg:w-1/3 px-3 mb-6">
+          <div class="bg-white rounded shadow-lg hover:shadow-xl">
+            <div class="p-6">
+              <div class="flex items-center justify-between">
+                <span class="text-gray-700 font-bold text-lg">${project.name}</span>
+                <span class="text-orange-500 font-bold">${project.date}</span>
+              </div>
+              <p class="text-gray-700 mt-4">${project.text}</p>
+             <a href="https://github.com/LongThanh2409/Du_An_1.git"> <img src="${project.image}" alt="${project.name}" class="hover:opacity-90 cursor-pointer w-full mt-4"> </a>
+              <button
+                class="bg-orange-500 hover:bg-orange-400 text-white font-bold py-2 px-4 rounded-full mt-4 transition-colors duration-300 ease-in-out">Chi Tiết</button>
+            
+            </div>
+          </div>
+        </div>`
+          }).join(' ')}
+      </div>
+
+      ${Footer()}
+       `;
 }
 
 export default HomePage;

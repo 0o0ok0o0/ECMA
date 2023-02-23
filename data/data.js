@@ -11,11 +11,11 @@ const projectList = [
 ]
 const menuList = [
 {
-    name:'home' ,
+    name:'Home' ,
     path: '/'
 },
 {
-    name:'contact' ,
+    name:'Contact' ,
     path: '/contact'
 },
 {
@@ -24,13 +24,10 @@ const menuList = [
 },
 
 {
-    name:'project',
+    name:'Project',
     path: '/project'
 },
-{
-    name:'Admin_project',
-    path: '/admin/categorys'
-},
+
 ]
 export {projectList};
 export{menuList}
